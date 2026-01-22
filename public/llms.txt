@@ -1,0 +1,36 @@
+# AI4Science Hub
+
+> Curated resources for applying AI and machine learning to scientific research.
+
+AI4Science Hub is a documentation site maintained by Fulcrum that aggregates learning resources, courses, tutorials, and tools for researchers working at the intersection of artificial intelligence and scientific discovery.
+
+## Topics Covered
+
+- Biology: Drug discovery, protein science, computational biology
+- Chemistry: Cheminformatics, reaction prediction, molecular design
+- Earth & Climate: Climate modeling, environmental research
+- Materials: Materials informatics, property prediction, discovery
+- Physics: Physics-informed ML, simulation
+- Foundations: Programming, ML basics, getting started
+- Methods: GNNs, transformers, generative models
+- Tools: Software ecosystems by domain
+
+## Site Structure
+
+- /biology - Resources for AI in biological sciences
+- /chemistry - Cheminformatics and computational chemistry
+- /earth-climate - Climate and environmental ML
+- /materials - Materials informatics resources
+- /physics - Physics-informed machine learning
+- /foundations - Foundational skills and prerequisites
+- /methods - ML methods and architectures
+- /tools - Software tools and libraries
+- /about - About the project and how to contribute
+
+## Maintainer
+
+Fulcrum - https://fulcrum.science
+
+## License
+
+Content is provided for educational purposes. Individual resources linked may have their own licenses.
