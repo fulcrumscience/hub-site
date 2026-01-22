@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Content
+content/
+
+# Misc
+.DS_Store
+*.log
+.claude/

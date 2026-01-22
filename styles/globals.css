@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for AI4Science Hub */
+
+/* Improve card hover states */
+.nextra-card {
+  transition: all 0.2s ease;
+}
+
+.nextra-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Better table styling */
+table {
+  @apply w-full border-collapse;
+}
+
+th {
+  @apply text-left font-semibold;
+}
+
+/* Code block improvements */
+pre {
+  @apply rounded-lg;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom callout colors */
+.nextra-callout {
+  @apply border-l-4;
+}
