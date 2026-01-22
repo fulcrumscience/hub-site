@@ -1,11 +1,13 @@
-import { writeFileSync, mkdirSync } from 'fs';
-import { dirname, join } from 'path';
+import { writeFileSync, mkdirSync, readFileSync, readdirSync, statSync } from 'fs';
+import { dirname, join, resolve } from 'path';
 
 // Configure these for your content repository
 const GITHUB_ORG = 'fulcrumscience';
 const GITHUB_REPO = 'hub-content';
 const BRANCH = 'main';
 const CONTENT_DIR = 'content';
+const CONTENT_SOURCE = process.env.CONTENT_SOURCE || 'remote';
+const LOCAL_CONTENT_PATH = process.env.CONTENT_LOCAL_PATH || '';
 
 async function fetchTree() {
   const url = `https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}/git/trees/${BRANCH}?recursive=1`;
@@ -25,6 +27,41 @@ async function fetchFile(path) {
 }
 
 async function fetchContent() {
+  if (CONTENT_SOURCE === 'skip') {
+    console.log('Skipping content fetch (CONTENT_SOURCE=skip).');
+    return;
+  }
+
+  if (CONTENT_SOURCE === 'local') {
+    if (!LOCAL_CONTENT_PATH) {
+      throw new Error('CONTENT_LOCAL_PATH is required when CONTENT_SOURCE=local');
+    }
+
+    const localRoot = resolve(LOCAL_CONTENT_PATH);
+    console.log(`Copying content from local path: ${localRoot}`);
+
+    const collectFiles = (dir, base = '') => {
+      const entries = readdirSync(dir);
+      for (const entry of entries) {
+        const fullPath = join(dir, entry);
+        const relPath = join(base, entry);
+        const stats = statSync(fullPath);
+        if (stats.isDirectory()) {
+          collectFiles(fullPath, relPath);
+        } else if (entry.endsWith('.md') || entry.endsWith('.json')) {
+          const localPath = join(CONTENT_DIR, relPath);
+          mkdirSync(dirname(localPath), { recursive: true });
+          writeFileSync(localPath, readFileSync(fullPath));
+          console.log(`  ${relPath}`);
+        }
+      }
+    };
+
+    collectFiles(localRoot);
+    console.log('\nContent copied successfully!');
+    return;
+  }
+
   console.log(`Fetching content from ${GITHUB_ORG}/${GITHUB_REPO}...`);
 
   const files = await fetchTree();
