@@ -44,11 +44,8 @@ body {
 /* Hero */
 .hub-hero {
   position: relative;
-  padding: 6rem 1.5rem 4rem;
+  padding: 6rem 0 4rem;
   overflow: hidden;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  width: 100vw;
 }
 
 .hub-hero::before {
@@ -226,6 +223,9 @@ body {
 @media (max-width: 960px) {
   .hub-hero {
     padding: 3rem 1rem 2rem;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
   }
 
   .hub-hero-inner {
@@ -608,10 +608,4 @@ body::after {
 .dark, [data-theme="dark"] {
   --tw-bg-opacity: 1;
   background-color: var(--bg-primary) !important;
-}
-
-/* Theme toggle - hide since we're forcing dark */
-button[aria-label="Toggle theme"],
-button[title*="theme"] {
-  display: none !important;
 }
