@@ -2,6 +2,7 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
+import '../styles/globals.css'
 import { FixEditLink } from './components/fix-edit-link'
 
 export const metadata = {
@@ -43,8 +44,17 @@ export const metadata = {
 const navbar = (
   <Navbar
     logo={
-      <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700, fontSize: '1.2rem' }}>
-        <img src="/images/favicon-32x32.png" alt="" style={{ height: '24px', width: '24px' }} />
+      <span style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        fontWeight: 500,
+        fontSize: '0.95rem',
+        letterSpacing: '0.15em',
+        textTransform: 'uppercase' as const,
+        color: '#fafaf9'
+      }}>
+        <img src="/images/favicon-32x32.png" alt="" style={{ height: '20px', width: '20px' }} />
         AI4Science Hub
       </span>
     }
@@ -54,7 +64,12 @@ const navbar = (
 
 const footer = (
   <Footer>
-    <span>
+    <span style={{
+      fontSize: '0.85rem',
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase' as const,
+      color: '#6b6b66'
+    }}>
       Fulcrum {new Date().getFullYear()}
     </span>
   </Footer>
@@ -66,7 +81,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
+    <html lang="en" dir="ltr" suppressHydrationWarning className="dark" style={{ colorScheme: 'dark' }}>
       <Head />
       <body>
         <FixEditLink />
