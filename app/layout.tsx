@@ -44,16 +44,7 @@ export const metadata = {
 const navbar = (
   <Navbar
     logo={
-      <span style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-        fontWeight: 500,
-        fontSize: '0.95rem',
-        letterSpacing: '0.15em',
-        textTransform: 'uppercase' as const,
-        color: '#fafaf9'
-      }}>
+      <span className="hub-logo">
         <img src="/images/favicon-32x32.png" alt="" style={{ height: '20px', width: '20px' }} />
         AI4Science Hub
       </span>
@@ -64,12 +55,7 @@ const navbar = (
 
 const footer = (
   <Footer>
-    <span style={{
-      fontSize: '0.85rem',
-      letterSpacing: '0.1em',
-      textTransform: 'uppercase' as const,
-      color: '#6b6b66'
-    }}>
+    <span className="hub-footer">
       Fulcrum {new Date().getFullYear()}
     </span>
   </Footer>
@@ -81,7 +67,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning className="dark" style={{ colorScheme: 'dark' }}>
+    <html lang="en" dir="ltr" suppressHydrationWarning>
       <Head />
       <body>
         <FixEditLink />
@@ -93,6 +79,7 @@ export default async function RootLayout({
           editLink="Edit this page on GitHub"
           sidebar={{ defaultMenuCollapseLevel: 1 }}
           toc={{ backToTop: true }}
+          darkMode={true}
         >
           {children}
         </Layout>

@@ -5,15 +5,30 @@
 @tailwind utilities;
 
 /* Fulcrum Design System */
+/* Light mode (default) */
 :root {
+  --bg-primary: #fafaf9;
+  --bg-secondary: #f4f4f3;
+  --text-primary: #1a1a1b;
+  --text-secondary: #4a4a48;
+  --text-muted: #6a6a66;
+  --accent: #9a8550;
+  --accent-dim: #7a6840;
+  --border: #e0e0dc;
+  color-scheme: light;
+}
+
+/* Dark mode */
+.dark {
   --bg-primary: #0a0a0b;
   --bg-secondary: #111113;
   --text-primary: #fafaf9;
-  --text-secondary: #a8a8a4;
-  --text-muted: #6b6b66;
+  --text-secondary: #c8c8c4;
+  --text-muted: #a0a09c;
   --accent: #c4a962;
   --accent-dim: #9a8550;
   --border: #2a2a2c;
+  color-scheme: dark;
 }
 
 /* Override Nextra theme colors */
@@ -26,12 +41,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Force dark mode styling */
-html[class~="dark"],
-html {
+/* Shiki code highlighting */
+.dark {
   --shiki-color-text: var(--text-primary);
   --shiki-color-background: var(--bg-secondary);
-  color-scheme: dark;
 }
 
 body {
@@ -151,7 +164,7 @@ body {
 .hub-hero-secondary {
   border: 1px solid var(--border);
   color: var(--text-secondary) !important;
-  background: rgba(17, 17, 19, 0.6);
+  background: var(--bg-secondary);
 }
 
 .hub-hero-secondary:hover {
@@ -174,7 +187,7 @@ body {
 
 .hub-hero-card {
   border: 1px solid var(--accent);
-  background: rgba(17, 17, 19, 0.6);
+  background: var(--bg-secondary);
   padding: 1.2rem 1.4rem;
   border-radius: 10px;
   transition: transform 0.3s ease;
@@ -361,7 +374,7 @@ main,
 
 /* Navbar styling */
 nav.nextra-nav-container {
-  background: linear-gradient(to bottom, var(--bg-primary) 0%, rgba(10, 10, 11, 0.95) 100%) !important;
+  background: var(--bg-primary) !important;
   border-bottom: 1px solid var(--border) !important;
   backdrop-filter: blur(10px);
 }
@@ -376,6 +389,17 @@ nav a:hover, nav button:hover {
 }
 
 /* Logo styling */
+.hub-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-primary) !important;
+}
+
 nav .nextra-nav-container-blur {
   background: transparent !important;
 }
@@ -479,6 +503,7 @@ th {
   color: var(--text-primary) !important;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--border);
+  background: var(--bg-primary) !important;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -488,11 +513,16 @@ th {
 td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
+  background: var(--bg-primary) !important;
+}
+
+tr:nth-child(even) td {
+  background: var(--bg-secondary) !important;
 }
 
 tr:hover td {
-  background: rgba(196, 169, 98, 0.05);
+  background: rgba(196, 169, 98, 0.08) !important;
 }
 
 /* Blockquotes / Callouts */
@@ -526,6 +556,13 @@ blockquote {
 }
 
 /* Footer */
+.hub-footer {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 footer {
   border-top: 1px solid var(--border) !important;
   color: var(--text-muted) !important;
@@ -533,11 +570,22 @@ footer {
 }
 
 /* TOC (Table of Contents) */
-.nextra-toc a {
+/* TOC (Table of Contents) - override Tailwind classes */
+.nextra-toc a,
+.nextra-toc a[class*="text-gray"] {
   color: var(--text-muted) !important;
 }
 
+.dark .nextra-toc a,
+.dark .nextra-toc a[class*="text-gray"] {
+  color: #b0b0ac !important;
+}
+
 .nextra-toc a:hover {
+  color: var(--accent) !important;
+}
+
+.dark .nextra-toc a:hover {
   color: var(--accent) !important;
 }
 
