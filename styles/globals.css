@@ -563,6 +563,16 @@ blockquote {
   color: var(--text-muted);
 }
 
+.hub-footer a {
+  color: var(--text-muted) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hub-footer a:hover {
+  color: var(--accent) !important;
+}
+
 footer {
   border-top: 1px solid var(--border) !important;
   color: var(--text-muted) !important;

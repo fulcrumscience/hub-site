@@ -1,6 +1,7 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
+import Script from 'next/script'
 import 'nextra-theme-docs/style.css'
 import '../styles/globals.css'
 import { FixEditLink } from './components/fix-edit-link'
@@ -56,7 +57,7 @@ const navbar = (
 const footer = (
   <Footer>
     <span className="hub-footer">
-      Fulcrum {new Date().getFullYear()}
+      Fulcrum {new Date().getFullYear()} · <a href="https://visits.fulcrum.science/share/XpDSIgXZZj4cVbro/hub.fulcrum.science" target="_blank" rel="noopener noreferrer">Public visitor count</a>
     </span>
   </Footer>
 )
@@ -69,6 +70,11 @@ export default async function RootLayout({
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <Head />
+      <Script
+        defer
+        src="https://visits.fulcrum.science/script.js"
+        data-website-id="e2426e0a-e598-4a08-9335-2c6c635cb532"
+      />
       <body>
         <FixEditLink />
         <Layout
