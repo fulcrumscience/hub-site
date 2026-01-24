@@ -1,0 +1,5 @@
+# AI4Science Hub - https://hub.fulcrum.science
+User-agent: *
+Allow: /
+
+Sitemap: https://hub.fulcrum.science/sitemap.xml
