@@ -1,5 +1,5 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { Head } from 'nextra/components'
+import { Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import '../styles/globals.css'
@@ -74,6 +74,7 @@ export default async function RootLayout({
         <Layout
           navbar={navbar}
           footer={footer}
+          search={<Search placeholder="Search resources…" />}
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/fulcrumscience/hub-content/blob/main"
           editLink="Edit this page on GitHub"
