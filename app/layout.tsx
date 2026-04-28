@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import '../styles/globals.css'
 import { FixEditLink } from './components/fix-edit-link'
+import Script from 'next/script'
 
 export const metadata = {
   title: {
@@ -58,6 +59,10 @@ const footer = (
     <span className="hub-footer">
       Fulcrum {new Date().getFullYear()}
     </span>
+    <span className="hub-footer-links">
+      <a href="https://github.com/fulcrumscience/hub-content/issues" target="_blank" rel="noopener noreferrer">Questions? Give us feedback</a>
+      <a href="https://github.com/fulcrumscience/hub-content/blob/main" target="_blank" rel="noopener noreferrer">Edit this page on GitHub</a>
+    </span>
   </Footer>
 )
 
@@ -71,15 +76,35 @@ export default async function RootLayout({
       <Head />
       <body>
         <FixEditLink />
+        <Script id="sidebar-nav" strategy="afterInteractive">{`
+          (function() {
+            var paths = {
+              'New to AI': '/foundations',
+              'Biology': '/biology',
+              'Chemistry': '/chemistry',
+              'Earth & Climate': '/earth-climate',
+              'Materials': '/materials',
+              'Physics': '/physics'
+            };
+            document.addEventListener('click', function(e) {
+              var btn = e.target && e.target.closest ? e.target.closest('aside li button') : null;
+              if (!btn) return;
+              var text = (btn.textContent || '').replace(/\\s+/g, ' ').trim();
+              var path = paths[text];
+              if (path) { window.location.href = path; }
+            }, true);
+          })();
+        `}</Script>
         <Layout
           navbar={navbar}
           footer={footer}
           search={<Search placeholder="Search resources…" />}
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/fulcrumscience/hub-content/blob/main"
-          editLink="Edit this page on GitHub"
+          editLink={null}
+          feedback={{ content: null }}
           sidebar={{ defaultMenuCollapseLevel: 1 }}
-          toc={{ backToTop: true }}
+          toc={{ float: false }}
           darkMode={true}
         >
           {children}
